@@ -34,7 +34,10 @@
         android:layout_height="wrap_content"
         android:text="2"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="normal|bold"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
 
     <Button
         android:layout_width="48dp"
@@ -55,7 +58,7 @@
         android:id="@+id/price_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$2"
+        android:text="$0"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
