@@ -8,18 +8,17 @@ import java.text.NumberFormat;
 
 
 public class MainActivity extends AppCompatActivity {
+    private int m_quantity = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        display(m_quantity);
     }
 
     public void submitOrder(View view) {
-        int numberOfCoffees = 2;
-        int quantity = 5;
-        display(numberOfCoffees);
-        displayPrice(numberOfCoffees * quantity);
+        displayPrice(5 * m_quantity);
     }
 
     private void display(int number) {
@@ -27,8 +26,17 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
+    public void increment(View view){
+        display(++m_quantity);
+    }
+
+    public void decrement(View view){
+        display(--m_quantity);
+    }
+
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
+
 }
