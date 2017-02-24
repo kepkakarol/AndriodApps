@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
 import java.text.NumberFormat;
 
 
@@ -18,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
-        displayPrice(5 * m_quantity);
+        String priceMessage = "Total: $" + (5 * m_quantity) + "\nThan you!";
+        displayMessage(priceMessage);
     }
 
     private void display(int number) {
@@ -26,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-    public void increment(View view){
+    public void increment(View view) {
         display(++m_quantity);
     }
 
-    public void decrement(View view){
+    public void decrement(View view) {
         display(--m_quantity);
     }
 
@@ -39,4 +41,8 @@ public class MainActivity extends AppCompatActivity {
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
+    }
 }
