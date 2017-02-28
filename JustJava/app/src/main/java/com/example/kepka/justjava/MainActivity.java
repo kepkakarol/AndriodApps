@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import java.text.NumberFormat;
-
 
 public class MainActivity extends AppCompatActivity {
     private int m_quantity = 1;
@@ -15,34 +13,42 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        display(m_quantity);
+        displayQuantity(m_quantity);
     }
 
     public void submitOrder(View view) {
-        String priceMessage = "Total: $" + (5 * m_quantity) + "\nThan you!";
-        displayMessage(priceMessage);
+        displayMessage(createOrderSumary(calculatePrice()));
     }
 
-    private void display(int number) {
+    private int calculatePrice() {
+        return m_quantity * 5;
+    }
+
+    private String createOrderSumary(int price) {
+        String priceMessage = "Name: Kaptain Kunal\n";
+        priceMessage += "Quantity: " + m_quantity + "\n";
+        priceMessage += "Total: $" + price + "\n";
+        priceMessage += "Thank you!";
+        return priceMessage;
+    }
+
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
 
     public void increment(View view) {
-        display(++m_quantity);
+        displayQuantity(++m_quantity);
     }
 
     public void decrement(View view) {
-        display(--m_quantity);
-    }
-
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        displayQuantity(--m_quantity);
     }
 
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
     }
+
+
 }
