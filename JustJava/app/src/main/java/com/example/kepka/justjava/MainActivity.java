@@ -1,9 +1,14 @@
 package com.example.kepka.justjava;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,15 +22,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
-        displayMessage(createOrderSumary(calculatePrice()));
+        CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        String whippedCramMessage = "Add whipped Cream? " + whippedCream.isChecked();
+        displayMessage(createOrderSumary(calculatePrice(), whippedCramMessage));
     }
 
     private int calculatePrice() {
         return m_quantity * 5;
     }
 
-    private String createOrderSumary(int price) {
+    private String createOrderSumary(int price, String whippedCream) {
         String priceMessage = "Name: Kaptain Kunal\n";
+        priceMessage += whippedCream + "\n";
         priceMessage += "Quantity: " + m_quantity + "\n";
         priceMessage += "Total: $" + price + "\n";
         priceMessage += "Thank you!";
@@ -35,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
+        quantityTextView.setTextColor(Color.GREEN);
     }
 
     public void increment(View view) {
